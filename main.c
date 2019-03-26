@@ -4,37 +4,35 @@ int main()
 {
     //wait_for_light(4);
     shut_down_in(119);
-    //enable_servos();
     int iteration_count = 0;
     int update_errors = 0;
     camera_open_black();
-    printf("owo big h test");
     enable_servos();
 
-set_servo_position(0,1600);
+set_servo_position(0,1600);             //open claw
 
 
-    set_servo_position(0,1200);
+    set_servo_position(0,1200);         //open claw
 
     mav(0,1000);
-    mav(2,1000);
+    mav(2,1000);                        //move forward for 6 seconds
     msleep(6000); 
 
     mav(0,0);
-    mav(2,0);
+    mav(2,0);                           //wait half a second
     msleep(500);
-    set_servo_position(0,1802);
+    set_servo_position(0,1802);         //close claw
 
-    mav(0,0);
-    mav(2,0);
+    mav(0,0);                           
+    mav(2,0);                           //wait another half second
     msleep(500);
 
-    mav(0, 1000);
+    mav(0, 1000);                       //move forward for 1/3 of a second
     mav(2, 1000);
     msleep(300);
     
 
-     mav(0,-500);
+     mav(0,-500);                      //turn right 90 degrees
     mav(2,500);
     msleep(1500);
 
@@ -56,21 +54,10 @@ set_servo_position(0,1600);
 
         //code starts here
         camera_update();
-        if(get_object_area(0, 0) > 700)
+        if(get_object_area(0, 0) > 700)         //move forward until camera sees burning
         {
             printf("%d\n", get_object_area(0,0));
             break;
-            //if(analog(0) > 1800) 
-            //{
-            // mav(0,10);
-            // mav(2,90);
-            // }
-            //else
-            //{
-            //mav(0,90);
-            ///  mav(2,10);
-            //  }
-
         }
         else
         {
@@ -88,21 +75,21 @@ set_servo_position(0,1600);
     
     mav(0,1000);
     mav(2,1000);
-    msleep(1000);
+    msleep(1000);               // move forward for 1 second
     
     mav(0,500);
-    mav(2,-500);
+    mav(2,-500);                //turn 90 degrees into the box
     msleep(1500);
     
     mav(0,1000);
     mav(2,1000);
-    msleep(500);
+    msleep(500);            //move forward half a second
     
-    set_servo_position(0, 1304);
+    set_servo_position(0, 1304);        //open claw
     
     mav(0,-1000);
     mav(2,-1000);
-    msleep(1000);
+    msleep(1000);                   //back up
     camera_close();
     return 0;
 }
