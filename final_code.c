@@ -120,5 +120,19 @@ set_servo_position(0,1600);
     mav(2,700);
     msleep(1250);
     
+    //proposed changes
+    
+    mav(0,-1000);
+    mav(2,-1000);
+    msleep(1500);           //this piece of code is to make the robot back up and hit the firefighters into the fire station
+    
+    mav(0,1000);
+    mav(2,-1000);
+    msleep(700);
+    
+    mav(0,-1000);
+    mav(2,1000);
+    msleep(1200);
+    
     return 0;
 }
